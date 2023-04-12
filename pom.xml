@@ -21,10 +21,10 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <finalName>calculator</finalName>               <!--название архива jar, который будет скомпилирован-->
+                    <finalName>textUtil</finalName>               <!--название архива jar, который будет скомпилирован-->
                     <archive>
                         <manifest>
-                            <mainClass>ru.learnup.Main</mainClass>  <!--класс, с которого запускается программа-->
+                            <mainClass>ru.learnup.TextUtils</mainClass>  <!--класс, с которого запускается программа-->
                         </manifest>
                     </archive>
                 </configuration>
