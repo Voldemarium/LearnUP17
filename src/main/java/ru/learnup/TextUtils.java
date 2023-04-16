@@ -1,17 +1,16 @@
 package ru.learnup;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.*;
 
 
 public class TextUtils {
 
- //   private static final Logger LOG =LoggerFactory.getLogger(TextUtils.class);
+   private static final Logger LOG = LoggerFactory.getLogger(TextUtils.class);
 
     public static void main(String[] args) throws FileNotFoundException {
          //commands:
@@ -27,6 +26,9 @@ public class TextUtils {
 
        //2.Тк первым путем файл "input.txt"  не получается извлечь из архива, создаваемого jar target
         // то файл "input.txt" кладем в папку target вручную после ее образования при операции maven package
+
+       LOG.debug("Application started...");
+
        File file = new File("input.txt");       //создаем на этой основе новый файл File
         Scanner in = new Scanner(file);
         Map<String, Integer> wordsMap = new HashMap<>();
@@ -39,7 +41,7 @@ public class TextUtils {
 
         }
 
-//       LOG.debug("Application started...");
+
 
         String option = args[0];      //первый аргумент - опция (-p, -m, -с)
         switch (option) {
@@ -47,13 +49,13 @@ public class TextUtils {
             case "-m" -> wordsMap.entrySet()
                     .stream()
                     .max(Map.Entry.comparingByValue())
-                    .ifPresent(entry -> System.out.print(entry.getKey()));  //вытаскиваем значение ключа (слова) из Optional<Entry<K, V>>
+                    .ifPresent(entry -> System.out.println(entry.getKey()));  //вытаскиваем значение ключа (слова) из Optional<Entry<K, V>>
             case  "-c" -> {
                 String symbol = args[1];   //ввод второго аргумента (символ, количество которого надо найти)
-                System.out.print(symbol + " - " + wordsMap.get(symbol) + " times in text");  //возвращаем значение из wordsMap по ключу
+                System.out.println(symbol + " - " + wordsMap.get(symbol) + " times in text");  //возвращаем значение из wordsMap по ключу
                                                                                            // = сколько раз встречается символ (или слово)
             }
         }
-        //      LOG.debug("Application finished...");
+             LOG.debug("Application finished...");
     }
 }

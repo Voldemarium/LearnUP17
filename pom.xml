@@ -16,20 +16,54 @@
     <!--настройка сборки (конфигурации)-->
     <build>
         <plugins>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>2.4</version>-->
+<!--                <configuration>-->
+<!--                    <finalName>textUtil</finalName>               &lt;!&ndash;название архива jar, который будет скомпилирован&ndash;&gt;-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <mainClass>ru.learnup.TextUtils</mainClass>  &lt;!&ndash;класс, с которого запускается программа&ndash;&gt;-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <finalName>textUtil</finalName>               <!--название архива jar, который будет скомпилирован-->
                     <archive>
                         <manifest>
                             <mainClass>ru.learnup.TextUtils</mainClass>  <!--класс, с которого запускается программа-->
                         </manifest>
                     </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef> <!--в архив jar будут упаковываться -->
+                                                                              <!-- все зависимости -->
+                    </descriptorRefs>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+    </dependencies>
 
 </project>
